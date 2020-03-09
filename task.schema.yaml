@@ -1,0 +1,193 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+$id: "https://ansible.com/schema/task.schema"
+$title: Task
+type: object
+properties:
+  action:
+    type: string
+    description:
+      The ‘action’ to execute for a task, it normally translates into a C(module) or action plugin.
+  any_errors_fatal:
+    type: boolean
+    description:
+      Force any un-handled task errors on any host to propagate to all hosts and end the play.
+  args:
+    type: object
+    description:
+      A secondary way to add arguments into a task. Takes a dictionary in which keys map to options and values.
+  async:
+    type: number
+    description:
+      Run a task asynchronously if the C(action) supports this; value is maximum runtime in seconds.
+  become:
+    type: boolean
+    description:
+      Boolean that controls if privilege escalation is used or not on Task execution.
+  become_exe:
+    type: string
+    description:
+      UNDOCUMENTED!!
+  become_flags:
+    type: string
+    description:
+      A string of flag(s) to pass to the privilege escalation program when become is True.
+  become_method:
+    type: string
+    description:
+      Which method of privilege escalation to use (such as sudo or su).
+  become_user:
+    type: string
+    description:
+      User that you ‘become’ after using privilege escalation. The remote/login user must have permissions to become this user.
+  changed_when:
+    type: boolean
+    description:
+      Conditional expression that overrides the task’s normal ‘changed’ status.
+  check_mode:
+    type: boolean
+    description:
+      A boolean that controls if a task is executed in ‘check’ mode
+      See also
+      Check Mode (“Dry Run”)
+  collections:
+    type: array
+    items:
+      type: array
+    description:
+      UNDOCUMENTED!!
+  connection:
+    type: string
+    description:
+      Allows you to change the connection plugin used for tasks to execute on the target.
+      See also
+      Using connection plugins
+  debugger:
+    type: string
+    description:
+      Enable debugging tasks based on state of the task result. See Playbook Debugger
+  delay:
+    type: number
+    description:
+      Number of seconds to delay between retries. This setting is only used in combination with until.
+  delegate_facts:
+    type: boolean
+    description:
+      Boolean that allows you to apply facts to a delegated host instead of inventory_hostname.
+  delegate_to:
+    type: string
+    description:
+      Host to execute task instead of the target (inventory_hostname). Connection vars from the delegated host will also be used for the task.
+  diff:
+    type: boolean
+    description:
+      Toggle to make tasks return ‘diff’ information or not.
+  environment:
+    type: object
+    description:
+      A dictionary that gets converted into environment vars to be provided for the task upon execution. This cannot affect Ansible itself nor its configuration, it just sets the variables for the code responsible for executing the task.
+  failed_when:
+    type: boolean
+    description:
+      Conditional expression that overrides the task’s normal ‘failed’ status.
+  ignore_errors:
+    type: boolean
+    description:
+      Boolean that allows you to ignore task failures and continue with play. It does not affect connection errors.
+  ignore_unreachable:
+    type: boolean
+    description:
+      Boolean that allows you to ignore unreachable hosts and continue with play. This does not affect other task errors (see ignore_errors) but is useful for groups of volatile/ephemeral hosts.
+  local_action:
+    type: string
+    description: >-
+      Same as action but also implies delegate_to: localhost
+  loop:
+    type: array
+    description:
+      Takes a list for the task to iterate over, saving each list element into the item variable (configurable via loop_control)
+  loop_control:
+    type: object
+    properties:
+      index_var:
+        type: string
+      label:
+        type: string
+      loop_var:
+        type: string
+      pause:
+        type: number
+    description:
+      Several keys here allow you to modify/set loop behaviour in a task.
+      See also
+      Adding controls to loops
+  module_defaults:
+    type: object
+    description:
+      Specifies default parameter values for modules.
+  name:
+    type: string
+    description:
+      Identifier. Can be used for documentation, in or tasks/handlers.
+  no_log:
+    type: boolean
+    description:
+      Boolean that controls information disclosure.
+  notify:
+    type: array
+    items:
+      type: string
+    description:
+      List of handlers to notify when the task returns a ‘changed=True’ status.
+  poll:
+    type: number
+    default: 10.0
+    description:
+      Sets the polling interval in seconds for async tasks (default 10s).
+  port:
+    type: integer
+    description:
+      Used to override the default port used in a connection.
+  register:
+    type: string
+    description:
+      Name of variable that will contain task status and module return data.
+  remote_user:
+    type: string
+    description:
+      User used to log into the target via the connection plugin.
+  retries:
+    type: integer
+    description:
+      Number of retries before giving up in a until loop. This setting is only used in combination with until.
+  run_once:
+    type: boolean
+    description:
+      Boolean that will bypass the host loop, forcing the task to attempt to execute on the first host available and afterwards apply any results and facts to all active hosts in the same batch.
+  tags:
+    type: array
+    description:
+      Tags applied to the task or included tasks, this allows selecting subsets of tasks from the command line.
+  throttle:
+    type: integer
+    # TODO express limits
+    description:
+      Limit number of concurrent task runs on task, block and playbook level. This is independent of the forks and serial settings, but cannot be set higher than those limits. For example, if forks is set to 10 and the throttle is set to 15, at most 10 hosts will be operated on in parallel.
+  until:
+    type: boolean
+    description:
+      This keyword implies a ‘retries loop’ that will go on until the condition supplied here is met or we hit the retries limit.
+  vars:
+    type: object
+    description:
+      Dictionary/map of variables
+  when:
+    type: boolean
+    description:
+      Conditional expression, determines if an iteration of a task is run or not.
+
+#patternProperties:
+#  '^with_\w+':
+#      - object
+#      - array
+#    description:
+#      The same as loop but magically adds the output of any lookup plugin to generate the item list.
