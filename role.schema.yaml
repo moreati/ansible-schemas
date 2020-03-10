@@ -96,5 +96,3 @@ references:
       type: boolean
       description:
         Conditional expression, determines if an iteration of a task is run or not.
-
-# vim: set filetype=yaml:

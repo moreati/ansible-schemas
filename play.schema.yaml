@@ -227,7 +227,3 @@ required:
   - hosts
 
 additionalProprties: false
-
-
-#task:
-# vim: set filetype=yaml:
