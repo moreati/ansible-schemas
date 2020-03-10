@@ -1,0 +1,15 @@
+---
+- name: Test environment template
+  hosts: localhost
+  gather_facts: false
+  vars:
+    foo:
+      x: 1
+      y: 2
+      z: 3
+  tasks:
+    - shell:
+        echo $x $y
+      environment: "{{ foo }}"
+
+# vim: set filetype=yaml:
