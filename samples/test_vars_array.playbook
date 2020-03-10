@@ -1,0 +1,13 @@
+- name: Test vars array
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    - foo: 1
+    - bar: 2
+  tasks:
+    - name: Show variables
+      debug:
+        msg: "foo={{ foo }}, bar={{ bar }}"
+
+# vim: filetype=yaml:
