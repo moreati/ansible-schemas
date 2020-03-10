@@ -97,7 +97,7 @@ properties:
     description: >-
       Allows you to pass subset options to the fact gathering plugin controlled by gather_facts.
   gather_timeout:
-    type: number
+    type: integer
     description: >-
       Allows you to set the timeout for the fact gathering plugin controlled by gather_facts.
   handlers:

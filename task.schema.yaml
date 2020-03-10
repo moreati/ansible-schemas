@@ -18,7 +18,7 @@ properties:
     description: >-
       A secondary way to add arguments into a task. Takes a dictionary in which keys map to options and values.
   async:
-    type: number
+    type: integer
     description: >-
       Run a task asynchronously if the C(action) supports this; value is maximum runtime in seconds.
   become:
@@ -68,7 +68,7 @@ properties:
     description: >-
       Enable debugging tasks based on state of the task result. See Playbook Debugger
   delay:
-    type: number
+    type: integer
     description: >-
       Number of seconds to delay between retries. This setting is only used in combination with until.
   delegate_facts:
@@ -141,8 +141,8 @@ properties:
     description: >-
       List of handlers to notify when the task returns a ‘changed=True’ status.
   poll:
-    type: number
-    default: 10.0
+    type: integer
+    default: 10
     description: >-
       Sets the polling interval in seconds for async tasks (default 10s).
   port:
@@ -159,6 +159,7 @@ properties:
       User used to log into the target via the connection plugin.
   retries:
     type: integer
+    default: 3
     description: >-
       Number of retries before giving up in a until loop. This setting is only used in combination with until.
   run_once:
