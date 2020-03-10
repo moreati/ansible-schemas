@@ -218,6 +218,25 @@ properties:
       List of files that contain vars to include in the play.
   vars_prompt:
     type: array
+    items:
+      type: object
+      properties:
+        confirm:
+          type: boolean
+        encrypt:
+          type: string
+        default:
+          type: string
+        name:
+          type: string
+        prompt:
+          type: string
+        private:
+          type: boolean
+        salt:
+          type: string
+        salt_size:
+          type: integer
     description: >-
       list of variables to prompt for.
 

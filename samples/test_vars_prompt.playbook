@@ -1,0 +1,20 @@
+- name: Test vars_prompt features
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars_prompt:
+    - name: password2
+      prompt: Enter password2
+      default: hunter2
+      private: true
+      encrypt: sha256_crypt
+      confirm: true
+      # If salt is specified, then salt_size is ignored
+      salt: foo
+      salt_size: 7
+  tasks:
+    - name: Show variables
+      debug:
+        var: password2
+
+# vim: filetype=yaml:
